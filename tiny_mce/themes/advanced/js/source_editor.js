@@ -1,26 +1,26 @@
 tinyMCEPopup.requireLangPack();
 tinyMCEPopup.onInit.add(onLoadInit);
-
+var cmEditor;
 function saveContent() {
-	tinyMCEPopup.editor.setContent(document.getElementById('htmlSource').value, {source_view : true});
+	tinyMCEPopup.editor.setContent(cmEditor.getValue(), {source_view : true});
 	tinyMCEPopup.close();
 }
 
 function onLoadInit() {
 	tinyMCEPopup.resizeToInnerSize();
-
 	// Remove Gecko spellchecking
 	if (tinymce.isGecko)
 		document.body.spellcheck = tinyMCEPopup.editor.getParam("gecko_spellcheck");
 
 	document.getElementById('htmlSource').value = tinyMCEPopup.editor.getContent({source_view : true});
 
-	if (tinyMCEPopup.editor.getParam("theme_advanced_source_editor_wrap", true)) {
-		turnWrapOn();
-		document.getElementById('wraped').checked = true;
-	}
-
+	// if (tinyMCEPopup.editor.getParam("theme_advanced_source_editor_wrap", true)) {
+	// 	// turnWrapOn();
+	// 	//document.getElementById('wraped').checked = true;
+	// }
 	resizeInputs();
+	//codeHigh();
+	setTimeout(codeHigh, 200);
 }
 
 function setWrap(val) {
@@ -75,4 +75,16 @@ function resizeInputs() {
 		el.style.width = (vp.w - 20) + 'px';
 		el.style.height = (vp.h - 65) + 'px';
 	}
+}
+
+function codeHigh(){
+      cmEditor = CodeMirror.fromTextArea(document.getElementById("htmlSource"), {
+        mode: 'text/html',
+        extraKeys: {
+        	"'>'": function(cm) { cm.closeTag(cm, '>'); },
+			"'/'": function(cm) { cm.closeTag(cm, '/'); }
+		},
+        wordWrap: true,
+        lineNumbers: true
+      });
 }

@@ -34,6 +34,12 @@
 							DOM.setStyle(DOM.doc.body, 'overflow', ed.getParam('fullscreen_overflow'));
 							DOM.win.scrollTo(ed.getParam('fullscreen_scrollx'), ed.getParam('fullscreen_scrolly'));
 							tinyMCE.settings = tinyMCE.oldSettings; // Restore old settings
+
+							//show e7edit panel
+							if (DOM.doc.getElementById("e7edit-panel") !== null) {
+								DOM.show(DOM.doc.getElementById("e7edit-panel"));
+								DOM.show(DOM.doc.getElementById("wrap"));
+							};
 						}, 10);
 					}
 
@@ -54,6 +60,8 @@
 					vp = DOM.getViewPort();
 					s.fullscreen_scrollx = vp.x;
 					s.fullscreen_scrolly = vp.y;
+					//取得編輯區寬
+					s.orgEditorWidth = t.editor.contentDocument.body.offsetWidth;
 
 					// Fixes an Opera bug where the scrollbars doesn't reappear
 					if (tinymce.isOpera && s.fullscreen_overflow == 'visible')
@@ -71,6 +79,16 @@
 						s.fullscreen_overflow = '';
 
 					DOM.setStyle(DOM.doc.body, 'overflow', 'hidden');
+
+
+					//hide e7edit panel
+					if (DOM.doc.getElementById("e7edit-panel") !== null) {
+						var NDC_e7edit = DOM.doc.getElementById("e7edit-panel");
+						var NDC_wrap = DOM.doc.getElementById("wrap");
+						DOM.setStyle(NDC_e7edit, 'display', 'none');
+						DOM.setStyle(NDC_wrap, 'display', 'none');
+					};
+
 					de.style.overflow = 'hidden'; //Fix for IE6/7
 					vp = DOM.getViewPort();
 					DOM.win.scrollTo(0, 0);
@@ -86,7 +104,7 @@
 
 					n = DOM.add(DOM.doc.body, 'div', {
 						id : 'mce_fullscreen_container',
-						style : 'position:' + posCss + ';left:0;width:' + vp.w + 'px;height:' + vp.h + 'px;z-index:200000;'});
+						style : 'position:' + posCss + ';left:0;width:' + vp.w + 'px;height:' + vp.h + 'px;z-index:200000; background-color:#FFF;'});
 					DOM.add(n, 'div', {id : 'mce_fullscreen'});
 
 					tinymce.each(ed.settings, function(v, n) {
@@ -111,6 +129,16 @@
 					if (s.theme_advanced_toolbar_location === 'external')
 						s.theme_advanced_toolbar_location = 'top';
 
+					//console.log(s);
+					//toolbar change!!!
+					s.body_class = "main-content fullscreen";
+					s.theme_advanced_buttons1 = "save,|,undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,forecolor,backcolor,formatselect,fontselect,fontsizeselect,styleselect";
+					s.theme_advanced_buttons2 = "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,|,link,unlink,anchor,image,media,|,table,|,row_props,row_after,delete_row,|,col_after,delete_col,|,split_cells,merge_cells,|,removeformat,cleanup,visualaid,|,fullscreen,code,preview";
+					s.theme_advanced_buttons3 = "";
+					s.theme_advanced_buttons4 = "";
+
+					//
+
 					t.fullscreenEditor = new tinymce.Editor('mce_fullscreen', s);
 					t.fullscreenEditor.onInit.add(function() {
 						t.fullscreenEditor.setContent(ed.getContent());
@@ -121,7 +149,25 @@
 
 					t.fullscreenElement = new tinymce.dom.Element('mce_fullscreen_container');
 					t.fullscreenElement.update();
-					//document.body.overflow = 'hidden';
+					
+					//指定寬
+					DOM.setStyle(t.fullscreenEditor.contentDocument.body, 'width', s.orgEditorWidth);
+					
+					t.container = new tinymce.dom.Element(t.fullscreenEditor.editorContainer);
+					t.container.add('span', {
+						id:"close_fullscreen_btn", 
+						title : "Exit full screen",
+						onClick : "tinyMCE.get('mce_fullscreen').execCommand('mceFullScreen');return false;"
+					}, "&nbsp;");
+					t.container.setStyle('opacity','0');
+					DOM.win.setTimeout(function(){
+						t.container.setStyles({
+							'opacity' : '1',
+							'-moz-transition' : 'opacity 1s',
+							'-webkit-transition' : 'opacity 1s',
+							'transition' : 'opacity 1s'
+						});
+					}, 150);
 
 					t.resizeFunc = tinymce.dom.Event.add(DOM.win, 'resize', function() {
 						var vp = tinymce.DOM.getViewPort(), fed = t.fullscreenEditor, outerSize, innerSize;

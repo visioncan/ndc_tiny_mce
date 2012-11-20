@@ -10,8 +10,9 @@ function init() {
 	window.setTimeout(insertHelpIFrame, 10);
 
 	tcont = document.getElementById('plugintablecontainer');
-	document.getElementById('plugins_tab').style.display = 'none';
+	//document.getElementById('plugins_tab').style.display = 'none';
 
+	/*
 	var html = "";
 	html += '<table id="plugintable">';
 	html += '<thead>';
@@ -53,7 +54,7 @@ function init() {
 	html += '</tbody>';
 	html += '</table>';
 
-	tcont.innerHTML = html;
+	tcont.innerHTML = html;*/
 
 	tinyMCEPopup.dom.get('version').innerHTML = tinymce.majorVersion + "." + tinymce.minorVersion;
 	tinyMCEPopup.dom.get('date').innerHTML = tinymce.releaseDate;

@@ -217,8 +217,8 @@ function generateWebColors() {
 		+ '<tr>';
 
 	for (i=0; i<colors.length; i++) {
-		h += '<td bgcolor="' + colors[i] + '" width="10" height="10">'
-			+ '<a href="javascript:insertAction();" role="option" tabindex="-1" aria-labelledby="web_colors_' + i + '" onfocus="showColor(\'' + colors[i] + '\');" onmouseover="showColor(\'' + colors[i] + '\');" style="display:block;width:10px;height:10px;overflow:hidden;">';
+		h += '<td bgcolor="' + colors[i] + '">'
+			+ '<a href="javascript:insertAction();" role="option" tabindex="-1" aria-labelledby="web_colors_' + i + '" onfocus="showColor(\'' + colors[i] + '\');" onmouseover="showColor(\'' + colors[i] + '\');" style="display:block;overflow:hidden;">';
 		if (tinyMCEPopup.editor.forcedHighContrastMode) {
 			h += '<canvas class="mceColorSwatch" height="10" width="10" data-color="' + colors[i] + '"></canvas>';
 		}

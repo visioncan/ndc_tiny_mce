@@ -11,16 +11,22 @@
 .defaultSkin .mceRight {text-align:right}
 
 /* External */
-.defaultSkin .mceExternalToolbar {position:absolute; border:1px solid #CCC; border-bottom:0; display:none;}
+.defaultSkin .mceExternalToolbar {position:absolute; display:none; box-shadow: 0 1px 8px rgba(0,0,0,.2);
+	border: 1px solid #808080;
+	border-top-color: #5D5D5D;
+	z-index: 1999;
+}
 .defaultSkin .mceExternalToolbar td.mceToolbar {padding-right:13px;}
 .defaultSkin .mceExternalClose {position:absolute; top:3px; right:3px; width:7px; height:7px; background:url(../../img/icons.gif) -820px 0}
-
+.defaultSkin a.mceExternalClose{
+	cursor: pointer;
+}
 /* Layout */
 .defaultSkin table.mceLayout {border:0; border-left:1px solid #CCC; border-right:1px solid #CCC}
 .defaultSkin table.mceLayout tr.mceFirst td {border-top:1px solid #CCC}
 .defaultSkin table.mceLayout tr.mceLast td {border-bottom:1px solid #CCC}
 .defaultSkin table.mceToolbar, .defaultSkin tr.mceFirst .mceToolbar tr td, .defaultSkin tr.mceLast .mceToolbar tr td {border:0; margin:0; padding:0;}
-.defaultSkin td.mceToolbar {background:#F0F0EE; padding-top:1px; vertical-align:top}
+.defaultSkin td.mceToolbar {background:#F0F0EE; padding-top:1px; vertical-align:top; box-shadow: inset 0 1px 0px #FFF; }
 .defaultSkin .mceIframeContainer {border-top:1px solid #CCC; border-bottom:1px solid #CCC}
 .defaultSkin .mceStatusbar {background:#F0F0EE; font-family:'MS Sans Serif',sans-serif,Verdana,Arial; font-size:9pt; line-height:16px; overflow:visible; color:#000; display:block; height:20px}
 .defaultSkin .mceStatusbar div {float:left; margin:2px}
@@ -217,3 +223,13 @@
 .defaultSkin span.mce_restoredraft {background-position:-20px -40px}
 .defaultSkin span.mce_spellchecker {background-position:-540px -20px}
 .defaultSkin span.mce_visualblocks {background-position: -40px -40px}
+
+
+/* full screen btn */
+#close_fullscreen_btn{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+	
+}

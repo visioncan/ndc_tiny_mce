@@ -131,7 +131,7 @@
 							['div', {'class' : 'mceLeft'}],
 							['div', {'class' : 'mceCenter'}],
 							['div', {'class' : 'mceRight'}],
-							['span', {id : id + '_status'}, 'Content']
+							['span', {id : id + '_status'}]
 						],
 
 						['a', {'class' : 'mceMove', tabindex : '-1', href : 'javascript:;'}],
@@ -181,10 +181,10 @@
 				DOM.setStyles(id + '_ifr', {width : f.width, height : f.height});
 				DOM.setAttrib(id + '_ifr', 'src', u);
 			} else {
-				DOM.add(id + '_wrapper', 'a', {id : id + '_ok', 'class' : 'mceButton mceOk', href : 'javascript:;', onmousedown : 'return false;'}, 'Ok');
+				DOM.add(id + '_wrapper', 'a', {id : id + '_ok', 'class' : 'mceButton mceOk', href : 'javascript:;', onmousedown : 'return false;'}, '好');
 
 				if (f.type == 'confirm')
-					DOM.add(id + '_wrapper', 'a', {'class' : 'mceButton mceCancel', href : 'javascript:;', onmousedown : 'return false;'}, 'Cancel');
+					DOM.add(id + '_wrapper', 'a', {'class' : 'mceButton mceCancel', href : 'javascript:;', onmousedown : 'return false;'}, '取消');
 
 				DOM.add(id + '_middle', 'div', {'class' : 'mceIcon'});
 				DOM.setHTML(id + '_content', f.content.replace('\n', '<br />'));

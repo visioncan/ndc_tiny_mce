@@ -206,7 +206,12 @@ function insertTable() {
 	}
 
 	for (var y=0; y<rows; y++) {
-		html += "<tr>";
+		if (y%2 == 0) {
+			html += '<tr>';
+		}else{
+			html += '<tr class="odd">';
+		}
+		
 
 		for (var x=0; x<cols; x++) {
 			if (!tinymce.isIE)

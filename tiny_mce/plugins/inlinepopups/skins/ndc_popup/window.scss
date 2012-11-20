@@ -1,0 +1,343 @@
+@charset "UTF-8";
+@import "compass/css3";
+
+
+@import "../../../../../../../../css/tm_editor/ui_icons";
+@import "manage/editor/ndc_popup/*.png";
+
+
+$experimental-support-for-khtml:false;
+$experimental-support-for-opera:false;
+//$experimental-support-for-microsoft:false;
+$support-for-original-webkit-gradients:false;
+
+
+$theme : ".ndc_popup";
+
+
+#{$theme},
+#{$theme} div,
+#{$theme} span,
+#{$theme} a {
+	vertical-align:baseline;
+	text-align:left;
+	position:absolute;
+	border:0;
+	padding:0;
+	margin:0;
+	background:transparent;
+	//font-family:Arial,Verdana;
+	font-size:12px;
+	color:#555;
+	text-decoration:none;
+	font-weight:normal;
+	width:auto;
+	height:auto;
+	display:block;
+	overflow:hidden;
+}
+
+$bar_height: 30px;
+$resize_size: 4px;
+$resize_color: #CCC;
+$btn_ok_color: #006dcc;
+
+//面版
+#{$theme}{
+	position:absolute;
+	direction:ltr;
+	background-color: darken(#FFF,10%);
+
+	&[role="dialog"]{
+		@include box-shadow(0 0 20px #000);
+		@include border-radius(5px);
+	}
+
+	.mceWrapper {
+		position:static;
+		//視窗按鈕
+		
+	}
+
+	// top 
+	.mceTop{
+		height: $bar_height;
+		top: 0;
+		width: 100%;
+		background-color: #444;
+		z-index: 9;
+		border-bottom: 1px solid #000;
+		@include background(linear-gradient(top, lighten(#444, 6), #444));
+		& > div{
+			display: none;
+		}
+		//標題
+		span{
+			line-height: $bar_height;
+			text-align: center;
+			text-shadow: 0 1px 1px #000;
+			font-size: 1.1em;
+			width: 100%;
+		}
+	}
+
+	// Middle
+	.mceMiddle{
+		width:100%;
+		height:100%;
+		top: 0;
+		clip: rect($bar_height, auto, auto, auto);
+		> div {
+			top: 0;
+			height: 100%;
+			width: $resize_size;
+			background-color: $resize_color;
+		}
+		.mceLeft{
+			left: 0;
+		}
+		.mceRight{
+			right: 0;
+		}
+		// iframe content
+		span{
+			width:100%;
+			height:100%;
+			top: $bar_height;
+			left: $resize_size;
+		}
+	}
+
+	// bottom
+	.mceBottom{
+		height: $resize_size;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		> div{
+			display: none;
+		}
+		span{
+			width: 100%;
+			height: $resize_size;
+			background-color: $resize_color;
+		}
+	}
+
+	
+
+	//////////////////////////////////
+	//        action
+	//////////////////////////////////
+	// Move
+	a{
+		position:absolute;
+		width: 17px;
+		height: 17px;
+		top: 6px;
+		background: $map no-repeat;
+		z-index: 10;
+	}
+	.mceMove{
+		display:none;
+		width:100%;
+		cursor:move;
+		height: $bar_height;
+		z-index: 9;
+		background-image: none;
+	}
+	.mceMovable .mceMove {
+		display:block;
+	}
+
+	.mceClose{
+		background-position: sprite-position($map, close_btn);
+		right: 7px;
+		z-index: 10;
+		&:hover{
+			background-position: sprite-position($map, close_btn_over);
+		}
+	}
+	.mceMax{
+		right: 27px;
+		background-position: sprite-position($map, max_btn);
+		&:hover{
+			background-position: sprite-position($map, max_btn_over);
+		}
+	}
+	.mceMed{
+		right: 27px;
+		background-position: sprite-position($map, med_btn);
+		&:hover{
+			background-position: sprite-position($map, med_btn_over);
+		}
+	}
+	.mceMin, 
+	.mceMed,
+	.mceMax{
+		display: none;
+	}
+
+	//////////////////////////////////
+	//        focus
+	//////////////////////////////////
+	.mceFocus{
+		.mceTop span{
+			color: #FFF;
+		}
+		.mceClose{
+		} 	
+		.mceMin{
+		}
+		.mceMax{
+		}
+	}
+	//////////////////////////////////
+	//        rezise
+	//////////////////////////////////
+	.mceResize{
+		width: $resize_size;
+		height: $resize_size;
+		display: none;
+		background-image: none;
+		&:hover{
+			background-color: #A6CAFE;
+			background-color: rgba(111, 162, 253, .5);
+		}
+	}
+	.mceResizable{
+		.mceResize{
+			display: block;
+		}
+		.mceMin,
+		.mceMax{ display: none; }
+	}
+	a.mceResizeN {top:0; left:0; width:100%; cursor:n-resize}
+	a.mceResizeNW {top:0; left:0; cursor:nw-resize}
+	a.mceResizeNE {top:0; right:0; cursor:ne-resize}
+	a.mceResizeW {top:0; left:0; height:100%; cursor:w-resize;}
+	a.mceResizeE {top:0; right:0; height:100%; cursor:e-resize}
+	a.mceResizeS {top:auto; bottom:0; left:0; width:100%; cursor:s-resize}
+	a.mceResizeSW {top:auto; bottom:0; left:0; cursor:sw-resize}
+	a.mceResizeSE {top:auto; bottom:0; right:0; cursor:se-resize}
+
+	.mceMinimizable .mceMin {display:block}
+	.mceMaximizable .mceMax {display:block}
+	.mceMaximized .mceMed {display:block}
+	.mceMaximized .mceMax {display:none}
+
+
+
+	//////////////////////////////////
+	//        Alert 
+	//////////////////////////////////
+
+	.mceConfirm .mceMiddle,
+	.mceAlert .mceMiddle{
+		span{
+			background:transparent;
+			left:75px;
+			top:45px;
+			width:310px;
+			height:44px;
+			overflow:auto;
+			white-space:normal;
+			font-size: 13px;
+			line-height: 18px;
+		}
+	}
+	.mceMiddle .mceIcon{
+		left: 15px;
+		top: 42px;
+		width: 48px;
+		height: 48px;
+		background-color: transparent;
+	}
+	.mceAlert .mceIcon{
+		@include ndc_popup-sprite(mceAlert); 
+	}
+	.mceConfirm .mceIcon{
+		@include ndc_popup-sprite(mceConfirm); 
+	}
+	.mceAlert .mceOk{
+		top: auto;
+		right: 15px;
+	}
+
+
+
+
+	.mceButton{
+		font-weight:bold;
+		bottom:15px;
+		right: 15px;
+		line-height:15px;
+		vertical-align:middle;
+		text-align:center;
+		outline:0;
+		padding: 4px 0;
+		font-size: 13px;
+		width: 75px;
+		@include border-radius(3px);
+		@include box-shadow(inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1));
+		@include transition(background-position 0.1s);
+		background-repeat: repeat-x;
+		&:hover{
+			background-position: 0 -15px;
+		}
+		&.mceOk{
+			color: #FFF;
+			background-color: $btn_ok_color;
+			text-shadow:0 1px 1px darken($btn_ok_color, 5%);
+			border: 1px solid darken($btn_ok_color, 5%);
+			@include background-image(linear-gradient(top, lighten($btn_ok_color, 20%), $btn_ok_color));
+		}
+		&.mceCancel{
+			right: 105px;
+			background-color: darken(#FFF,17%);
+			border: 1px solid darken(#FFF,30%);
+			@include background-image(linear-gradient(top, #FFF, darken(#FFF,17%)));
+		}
+
+		
+	}
+}
+
+
+
+//底opacity
+$overlay_opacity: 0.6;
+#{$theme}_modalBlocker {
+	position:fixed;
+	left:0; top:0;
+	width:100%; height:100%;
+	background:#000; 
+	opacity: $overlay_opacity; 
+	-ms-filter:'alpha(opacity=60)';
+	filter:alpha(opacity=$overlay_opacity*100); 
+	display:none;
+}
+
+.mceEventBlocker {
+	position: fixed;
+	left:0; top:0;
+	width:100%;
+	height:100%;
+	background: transparent;
+	.mcePlaceHolder{
+		border:1px solid #343C4D;
+		background:#6FA2FD;
+		top:0; left:0;
+		opacity:0.5; 
+		-ms-filter:'alpha(opacity=50)'; 
+		filter:alpha(opacity=50);
+		@include border-radius(5px);
+	}
+}
+
+
+
+
+
+
+

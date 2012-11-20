@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>{#advimage_dlg.dialog_title}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="../../utils/mctabs.js"></script>
 	<script type="text/javascript" src="../../utils/form_utils.js"></script>
@@ -18,6 +19,7 @@
 				<li id="general_tab" class="current" aria-controls="general_panel"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{#advimage_dlg.tab_general}</a></span></li>
 				<li id="appearance_tab" aria-controls="appearance_panel"><span><a href="javascript:mcTabs.displayTab('appearance_tab','appearance_panel');" onmousedown="return false;">{#advimage_dlg.tab_appearance}</a></span></li>
 				<li id="advanced_tab" aria-controls="advanced_panel"><span><a href="javascript:mcTabs.displayTab('advanced_tab','advanced_panel');" onmousedown="return false;">{#advimage_dlg.tab_advanced}</a></span></li>
+				<li id="ndc_media_tab" aria-controls="ndc_media_panel"><span><a href="javascript:mcTabs.displayTab('ndc_media_tab','ndc_media_panel');">已上傳圖片</a></span></li>
 			</ul>
 		</div>
 
@@ -224,6 +226,16 @@
 					</table>
 				</fieldset>
 			</div>
+
+
+			<!-- 新增已上傳 -->
+			<div id="ndc_media_panel" class="panel">
+				<iframe src="/ndc_media_manage.php?type=img" frameborder="0" width="490" height="350"></iframe>
+			</div>
+			<!-- 新增已上傳 -->
+
+
+
 		</div>
 
 		<div class="mceActionPanel">

@@ -1340,7 +1340,7 @@
 			ed.windowManager.open({
 				url : this.url + '/anchor.htm',
 				width : 320 + parseInt(ed.getLang('advanced.anchor_delta_width', 0)),
-				height : 90 + parseInt(ed.getLang('advanced.anchor_delta_height', 0)),
+				height : 105 + parseInt(ed.getLang('advanced.anchor_delta_height', 0)),
 				inline : true
 			}, {
 				theme_url : this.url
@@ -1393,7 +1393,7 @@
 			ed.windowManager.open({
 				url : this.url + '/color_picker.htm',
 				width : 375 + parseInt(ed.getLang('advanced.colorpicker_delta_width', 0)),
-				height : 250 + parseInt(ed.getLang('advanced.colorpicker_delta_height', 0)),
+				height : 270 + parseInt(ed.getLang('advanced.colorpicker_delta_height', 0)),
 				close_previous : false,
 				inline : true
 			}, {
@@ -1408,8 +1408,8 @@
 
 			ed.windowManager.open({
 				url : this.url + '/source_editor.htm',
-				width : parseInt(ed.getParam("theme_advanced_source_editor_width", 720)),
-				height : parseInt(ed.getParam("theme_advanced_source_editor_height", 580)),
+				width : 720 + parseInt(ed.getParam("theme_advanced_source_editor_width", 0)),
+				height : 500 + parseInt(ed.getParam("theme_advanced_source_editor_height", 0)),
 				inline : true,
 				resizable : true,
 				maximizable : true
@@ -1440,8 +1440,8 @@
 
 			ed.windowManager.open({
 				url : this.url + '/link.htm',
-				width : 310 + parseInt(ed.getLang('advanced.link_delta_width', 0)),
-				height : 200 + parseInt(ed.getLang('advanced.link_delta_height', 0)),
+				width : 340 + parseInt(ed.getLang('advanced.link_delta_width', 0)),
+				height : 215 + parseInt(ed.getLang('advanced.link_delta_height', 0)),
 				inline : true
 			}, {
 				theme_url : this.url

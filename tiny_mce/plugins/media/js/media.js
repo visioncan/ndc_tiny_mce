@@ -350,12 +350,13 @@
 				}
 				
 				// Google maps
-				if (src.match(/maps.google.([a-z]{2,3})\/maps\/(.+)msid=(.+)/)) {
+				if (src.match(/maps.google.com[\w.]*\/(.+)ll=(.+)/)) {
 					data.width = 425;
 					data.height = 350;
 					data.params.frameborder = '0';
 					data.type = 'iframe';
-					src = 'http://maps.google.com/maps/ms?msid=' + src.match(/msid=(.+)/)[1] + "&output=embed";
+					//src = 'http://maps.google.com/ms?msid=' + src.match(/msid=(.+)/)[1] + "&output=embed";
+					src += "&output=embed";
 					setVal('src', src);
 					setVal('media_type', data.type);
 				}
